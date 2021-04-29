@@ -3,6 +3,7 @@ from flask import jsonify, request, make_response
 from flask_restplus import Resource
 from app import api, password_encrypt, app
 from app.models.staff import Staff
+from app.models.candidate import Candidate
 from flask_jwt_extended import jwt_required, create_access_token
 
 
@@ -10,6 +11,7 @@ from flask_jwt_extended import jwt_required, create_access_token
 @api.route('/staff')
 class StaffAll(Resource):
     """ Creating StaffAll class inherited from resource to implement flask_restplus api functionality """
+
     def get(self):
         """
         Function to get all staffs in the database
@@ -78,3 +80,29 @@ class StaffByEmail(Resource):
 
         except Exception as e:
             return make_response(jsonify(message='An error has occurred', error=str(e), login=False), 406)
+
+
+@api.route('/add_candidate')
+@jwt_required()
+class CandidateRegister(Resource):
+    def post(self):
+        """
+        Function to add new candidates on the database
+
+        :return: Response based on success of add.
+        """
+        try:
+            # Assigning API payload to variable
+            data = api.payload
+
+            # Encrypting plain password from request.
+            data['password'] = password_encrypt.hash_password(data['password'])
+
+            access_token = create_access_token(expires_delta=timedelta(days=60), identity=data['email'])
+            # Adding new register to database
+            Candidate(name=data['name'], email=data['email'], personal_token=access_token,
+                              video_interview_path='', cv_path='', password=data['password']).save()
+            return make_response(jsonify(message='Successfully Registered'), 201)
+
+        except:
+            return make_response(jsonify(message='Sorry, an error has occurred'), 406)
