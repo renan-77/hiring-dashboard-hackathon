@@ -1,7 +1,7 @@
 from datetime import timedelta
 from flask import jsonify, request, make_response
 from flask_restplus import Resource
-from app import api, password_encrypt, app
+from app import api, password_encrypt
 from app.models.staff import Staff
 from app.models.candidate import Candidate
 from flask_jwt_extended import jwt_required, create_access_token
@@ -21,28 +21,30 @@ class StaffAll(Resource):
         return make_response(jsonify(Staff.objects.all()), 200)
 
 
-@api.route('/register')
+@api.route('/add_staff')
 # @jwt_required()
-class StaffRegister(Resource):
+class StaffRegistration(Resource):
     def post(self):
         """
         Function to add new staffs on the
 
         :return: Response based on success of add.
         """
-        try:
-            # Assigning API payload to variable
-            data = api.payload
+        # Assigning API payload to variable
+        data = api.payload
 
-            # Encrypting plain password from request.
-            data['password'] = password_encrypt.hash_password(data['password'])
+        # Encrypting plain password from request.
+        data['password'] = password_encrypt.hash_password(data['password'])
 
-            # Adding new register to database
-            Staff(name=data['name'], email=data['email'], password=data['password'], isStaff=True).save()
-            return make_response(jsonify(message='Successfully Registered'), 201)
+        # Adding new register to database
+        Staff(name=data['name'], email=data['email'], password=data['password'], isStaff=True).save()
 
-        except:
-            return make_response(jsonify(message='Sorry, an error has occurred'), 406)
+        return make_response(jsonify(message='Successfully Registered'), 201)
+        # try:
+        #
+        #
+        # except:
+        #     return make_response(jsonify(message='Sorry, an error has occurred'), 406)
 
 
 # Creating login route for post request.
@@ -82,9 +84,9 @@ class StaffByEmail(Resource):
             return make_response(jsonify(message='An error has occurred', error=str(e), login=False), 406)
 
 
-@api.route('/add_candidate')
-@jwt_required()
+@api.route('/candidate')
 class CandidateRegister(Resource):
+    @jwt_required()
     def post(self):
         """
         Function to add new candidates on the database
@@ -100,9 +102,18 @@ class CandidateRegister(Resource):
 
             access_token = create_access_token(expires_delta=timedelta(days=60), identity=data['email'])
             # Adding new register to database
-            Candidate(name=data['name'], email=data['email'], personal_token=access_token,
+            Candidate(name=data['name'], email=data['email'], role=data['role'], branch=data['branch'], personal_token=access_token,
                               video_interview_path='', cv_path='', password=data['password']).save()
+
             return make_response(jsonify(message='Successfully Registered'), 201)
 
         except:
             return make_response(jsonify(message='Sorry, an error has occurred'), 406)
+
+    def get(self):
+        """
+        Function to get all staffs in the database
+
+        :return: Returns a json with all existing staffs from the database.
+        """
+        return make_response(jsonify(Candidate.objects.all()), 200)

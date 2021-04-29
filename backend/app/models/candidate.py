@@ -7,6 +7,8 @@ class Candidate(Document):
     _id = ObjectIdField()
     name = db.StringField()
     email = db.StringField(unique=True)
+    role = db.StringField()
+    branch = db.StringField()
     personal_token = db.StringField()
     video_interview_path = db.StringField()
     cv_path = db.StringField()

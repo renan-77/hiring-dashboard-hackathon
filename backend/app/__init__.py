@@ -16,7 +16,6 @@ jwt = JWTManager(app=app)  # Creating instance of JWT for token management.
 
 from app import routes  # Routes were declared in a different file, importing them for their usage.
 
-
 # Checking if module is being called from main.
 if __name__ == '__main__':
     app.run()
