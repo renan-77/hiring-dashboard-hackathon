@@ -1,0 +1,5 @@
+node_modules
+venv
+.DS_STORE
+.idea
+__pycache__ 
