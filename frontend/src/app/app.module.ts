@@ -1,62 +1,47 @@
-// Modules imports
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { AppRoutingModule } from './routes/app-routing.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
-// Components imports.
+
+import { AppRoutingModule } from './app.routing';
+import { ComponentsModule } from './components/components.module';
+
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 
-// Importing classes for access management.
-import {AuthGuard} from './auth/guards/auth.guard';
-import {TokenInterceptor} from './auth/interceptors/token.interceptor';
-import {AuthService} from './auth/services/auth.service';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TableListComponent } from './table-list/table-list.component';
+import { TypographyComponent } from './typography/typography.component';
+import { IconsComponent } from './icons/icons.component';
+import { MapsComponent } from './maps/maps.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
+import {
+  AgmCoreModule
+} from '@agm/core';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
-    declarations: [
-        // Declaring components.
-        AppComponent,
-        LoginComponent,
-        HomeComponent,
-    ],
-    imports: [
-        // Importing modules from libraries.
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FlexLayoutModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatToolbarModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatSnackBarModule
+  imports: [
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ComponentsModule,
+    RouterModule,
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    })
+  ],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
 
-    ],
-    providers: [{
-        // Providing Interceptor and specifying which class it's declared.
-        provide: HTTP_INTERCEPTORS,
-        useClass: TokenInterceptor,
-        multi: true
-    },
-        // Providing AuthGuard with it's class.
-        AuthGuard,
-        AuthService
-    ],
-    bootstrap: [AppComponent]
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
