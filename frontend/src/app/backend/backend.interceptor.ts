@@ -33,16 +33,17 @@ export class BackendInterceptor implements HttpInterceptor {
         // GET USERS.
         if (request.method === 'GET' && request.url === 'http://localhost:5000/candidates') {
             return of(new HttpResponse({status: 200, body: candidates}));
-        }
 
         // REGISTER USER.
-        if (request.method === 'POST' && request.url === 'http://localhost:5000/candidates') {
+        } else if (request.method === 'POST' && request.url === 'http://localhost:5000/candidates') {
             // Cloning users array to a new array.
             const newUsers = Object.assign([], candidates);
             // Adding new user on array based on object.
             newUsers.push(request.body);
             // Returning the new array.
             return of(new HttpResponse({status: 200, body: newUsers[newUsers.length - 1]}));
+
+        // AUTHENTICATING LOGIN.
         } else if (request.method === 'POST' && request.url === 'http://localhost:5000/login') {
             // Using searchDb function to find if user exists.
             const loginCheck = this.searchDb(request.body.email, request.body.password);
@@ -54,6 +55,8 @@ export class BackendInterceptor implements HttpInterceptor {
             // Returning response based on search.
             return of(new HttpResponse({body: {response: loginCheck}}));
         }
+
+
         next.handle(request);
     }
 }
