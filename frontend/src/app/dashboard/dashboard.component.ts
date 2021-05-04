@@ -116,7 +116,7 @@ export class DashboardComponent implements OnInit {
       /* ----------==========     Completed Tasks Pie initialization    ==========---------- */
 
       const dataCompletedTasksPie: any = {
-          series: [ {value: 250},  {value: 150}, {value: 1100}],
+          series: [ {value: 225},  {value: 175}, {value: 1100}],
       };
       const optionsCompletedTasksPie: any = {
           total: 1500,
