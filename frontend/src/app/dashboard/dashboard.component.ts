@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import * as legend from 'chartist-plugin-legend';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
   constructor() { }
-  startAnimationForLineChart(chart){
+  startAnimationForLineChart(chart) {
       let seq: any, delays: any, durations: any;
       seq = 0;
       delays = 80;
       durations = 500;
 
       chart.on('draw', function(data) {
-        if(data.type === 'line' || data.type === 'area') {
+        if (data.type === 'line' || data.type === 'area') {
           data.element.animate({
             d: {
               begin: 600,
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
               easing: Chartist.Svg.Easing.easeOutQuint
             }
           });
-        } else if(data.type === 'point') {
+        } else if (data.type === 'point') {
               seq++;
               data.element.animate({
                 opacity: {
@@ -42,14 +43,14 @@ export class DashboardComponent implements OnInit {
 
       seq = 0;
   };
-  startAnimationForBarChart(chart){
+  startAnimationForBarChart(chart) {
       let seq2: any, delays2: any, durations2: any;
 
       seq2 = 0;
       delays2 = 80;
       durations2 = 500;
       chart.on('draw', function(data) {
-        if(data.type === 'bar'){
+        if (data.type === 'bar') {
             seq2++;
             data.element.animate({
               opacity: {
@@ -84,7 +85,7 @@ export class DashboardComponent implements OnInit {
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
       }
 
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
+      const dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
 
       this.startAnimationForLineChart(dailySalesChart);
 
@@ -107,7 +108,7 @@ export class DashboardComponent implements OnInit {
           chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
       }
 
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
+      const completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
 
       // start animation for the Completed Tasks Chart - Line Chart
       this.startAnimationForLineChart(completedTasksChart);
@@ -115,37 +116,30 @@ export class DashboardComponent implements OnInit {
       /* ----------==========     Completed Tasks Pie initialization    ==========---------- */
 
       const dataCompletedTasksPie: any = {
-          // labels: [12],
-          series: [ , 300, 1201,]
+          series: [ {value: 250},  {value: 150}, {value: 1100}],
       };
+      const optionsCompletedTasksPie: any = {
+          total: 1500,
+          showLabel: true,
+          labelOffset: 12,
+      }
 
-
-      // const optionsCompletedTasksPie: any = {
-      //     lineSmooth: Chartist.Interpolation.cardinal({
-      //         tension: 0
-      //     }),
-      //     low: 0,
-      //     high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-      //     chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-      // }
-
-      new Chartist.Pie('#completedTasksPie', dataCompletedTasksPie);
-
-      // start animation for the Completed Tasks Chart - Line Chart
+      new Chartist.Pie('#completedTasksPie', dataCompletedTasksPie, optionsCompletedTasksPie);
+          // start animation for the Completed Tasks Chart - Line Chart
       // this.startAnimationForLineChart(completedTasksPie);
 
 
 
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
-      var datawebsiteViewsChart = {
+      const datawebsiteViewsChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
         series: [
           [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
 
         ]
       };
-      var optionswebsiteViewsChart = {
+      const optionswebsiteViewsChart = {
           axisX: {
               showGrid: false
           },
@@ -153,7 +147,7 @@ export class DashboardComponent implements OnInit {
           high: 1000,
           chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
       };
-      var responsiveOptions: any[] = [
+      const responsiveOptions: any[] = [
         ['screen and (max-width: 640px)', {
           seriesBarDistance: 5,
           axisX: {
@@ -163,9 +157,9 @@ export class DashboardComponent implements OnInit {
           }
         }]
       ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
+      const websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
 
-      //start animation for the Emails Subscription Chart
+      // start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
 

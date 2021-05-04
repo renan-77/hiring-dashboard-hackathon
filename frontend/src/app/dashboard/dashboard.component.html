@@ -8,7 +8,7 @@
                           <i class="material-icons">content_copy</i>
                       </div>
                       <p class="card-category">Total Applicants</p>
-                      <h3 class="card-title">1501
+                      <h3 class="card-title">1500
                       </h3>
                   </div>
                   <div class="card-footer">
@@ -22,30 +22,30 @@
               <div class="card card-stats">
                   <div class="card-header card-header-success card-header-icon">
                       <div class="card-icon">
-                          <i class="material-icons">store</i>
+                          <i class="material-icons">grade</i>
                       </div>
-                      <p class="card-category">Revenue</p>
-                      <h3 class="card-title">$34,245</h3>
+                      <p class="card-category">Roles Available</p>
+                      <h3 class="card-title">320</h3>
                   </div>
                   <div class="card-footer">
                       <div class="stats">
-                          <i class="material-icons">date_range</i> Last 24 Hours
+                          <i class="material-icons">update</i> Last 6 Hours
                       </div>
                   </div>
               </div>
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
-                  <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-header card-header-primary card-header-icon">
                       <div class="card-icon">
                           <i class="material-icons">info_outline</i>
                       </div>
-                      <p class="card-category">Fixed Issues</p>
+                      <p class="card-category">Videos Requiring Upload</p>
                       <h3 class="card-title">75</h3>
                   </div>
                   <div class="card-footer">
                       <div class="stats">
-                          <i class="material-icons">local_offer</i> Tracked from Github
+                          <i class="material-icons">update</i> Last updated 3 minutes ago
                       </div>
                   </div>
               </div>
@@ -104,10 +104,15 @@
           <div class="col-md-4">
               <div class="card card-chart">
                   <div class="card-header card-header-info">
-                      <div class="ct-chart" id="completedTasksPie"></div>
+                      <ul>
+                          <li class="blt-1"> <span> Applications Pending </span></li>
+                          <li class="blt-2"> <span> Applications Denied </span></li>
+                          <li class="blt-3"> <span> Applications Approved </span></li>
+                      </ul>
+                      <div class="ct-chart " id="completedTasksPie"></div>
                   </div>
                   <div class="card-body">
-                      <h4 class="card-title">Completed Tasks (25.1%)</h4>
+                      <h4 class="card-title">Completed Applications (26.67%)</h4>
                       <p>
                   </div>
                   <div class="card-footer">
@@ -124,27 +129,8 @@
                   <div class="card-header card-header-tabs card-header-primary">
                       <div class="nav-tabs-navigation">
                           <div class="nav-tabs-wrapper">
-                              <span class="nav-tabs-title">Tasks:</span>
-                              <ul class="nav nav-tabs" data-tabs="tabs">
-                                  <li class="nav-item">
-                                      <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
-                                          <i class="material-icons">bug_report</i> Bugs
-                                          <div class="ripple-container"></div>
-                                      </a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a mat-button class="nav-link" href="#messages" data-toggle="tab">
-                                          <i class="material-icons">code</i> Website
-                                          <div class="ripple-container"></div>
-                                      </a>
-                                  </li>
-                                  <li class="nav-item">
-                                      <a mat-button class="nav-link" href="#settings" data-toggle="tab">
-                                          <i class="material-icons">cloud</i> Server
-                                          <div class="ripple-container"></div>
-                                      </a>
-                                  </li>
-                              </ul>
+                              <span class="nav-tabs-title"> <i class="material-icons">assignment</i>  Tasks</span>
+
                           </div>
                       </div>
                   </div>
@@ -164,7 +150,7 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Sign contract for "What are conference organizers afraid of?"</td>
+                                          <td> Need to create upload a specification sheet for "Sales" Role </td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                   <i class="material-icons">edit</i>
@@ -185,7 +171,7 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                          <td> Remember to review Sarah Hooper's application </td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                   <i class="material-icons">edit</i>
@@ -206,7 +192,7 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                          <td> Compose an e-mail to Dan in regards to his application
                                           </td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
@@ -228,7 +214,7 @@
                                                   </label>
                                               </div>
                                           </td>
-                                          <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                                          <td>Create 4 role openings for applicants</td>
                                           <td class="td-actions text-right">
                                               <button mat-raised-button type="button" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                   <i class="material-icons">edit</i>
@@ -375,33 +361,44 @@
                           <thead class="text-warning">
                               <th>ID</th>
                               <th>Name</th>
+                              <th>Location</th>
+                              <th>Role</th>
                               <th>Salary</th>
-                              <th>Country</th>
+                              <th>Application Status</th>
                           </thead>
                           <tbody>
                               <tr>
                                   <td>1</td>
-                                  <td>Dakota Rice</td>
+                                  <td>John Rice</td>
+                                  <td>Texas</td>
+                                  <td>Logistics</td>
                                   <td>$36,738</td>
-                                  <td>Niger</td>
+                                  <td>Denied</td>
+
                               </tr>
                               <tr>
                                   <td>2</td>
-                                  <td>Minerva Hooper</td>
-                                  <td>$23,789</td>
-                                  <td>Curaçao</td>
+                                  <td>Sarah Hooper</td>
+                                  <td>New York</td>
+                                  <td>Software Engineer</td>
+                                  <td>$40,400</td>
+                                  <td> Pending </td>
                               </tr>
                               <tr>
                                   <td>3</td>
-                                  <td>Sage Rodriguez</td>
-                                  <td>$56,142</td>
-                                  <td>Netherlands</td>
+                                  <td>Tahir Asad</td>
+                                  <td>Azerbaijan</td>
+                                  <td>Marketing</td>
+                                  <td>$50,000</td>
+                                  <td>Approved</td>
                               </tr>
                               <tr>
                                   <td>4</td>
-                                  <td>Philip Chaney</td>
-                                  <td>$38,735</td>
-                                  <td>Korea, South</td>
+                                  <td>Jessica Vance</td>
+                                  <td>France</td>
+                                  <td>Cyber Security</td>
+                                  <td>$45,000</td>
+                                  <td>Approved</td>
                               </tr>
                           </tbody>
                       </table>
