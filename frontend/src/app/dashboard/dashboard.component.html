@@ -8,7 +8,7 @@
                           <i class="material-icons">content_copy</i>
                       </div>
                       <p class="card-category">Total Applicants</p>
-                      <h3 class="card-title">1500
+                      <h3 class="card-title">{{totalNumberOfCandidates}}
                       </h3>
                   </div>
                   <div class="card-footer">
@@ -112,7 +112,8 @@
                       <div class="ct-chart " id="completedTasksPie"></div>
                   </div>
                   <div class="card-body">
-                      <h4 class="card-title">Completed Applications (26.67%)</h4>
+                      <h4 class="card-title">Completed Applications ({{(((this.candidatesStatus['status']['approved'] +
+                          this.candidatesStatus['status']['denied']) / this.totalNumberOfCandidates) * 100).toFixed(2)}}%)</h4>
                       <p>
                   </div>
                   <div class="card-footer">

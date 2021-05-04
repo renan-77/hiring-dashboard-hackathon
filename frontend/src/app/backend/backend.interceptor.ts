@@ -75,7 +75,10 @@ export class BackendInterceptor implements HttpInterceptor {
 
         // Returns the number of approved, denied and pending status on database.
         } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_status') {
-            return of(new HttpResponse({body: {status: this.countStatus()}}));
+            const status = this.countStatus();
+            console.log('In API here');
+            console.log(status);
+            return of(new HttpResponse({body: {status: status}}));
         }
 
 

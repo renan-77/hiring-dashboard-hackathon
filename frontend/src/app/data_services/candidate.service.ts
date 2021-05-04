@@ -8,6 +8,7 @@ export class CandidateService {
   // Declaring API urls.
   private readonly loginUrl: string = 'http://localhost:5000/login';
   private readonly candidatesUrl: string = 'http://localhost:5000/candidates';
+  private readonly candidateStatusUrl: string = 'http://localhost:5000/cadidate_status';
 
   // Declaring instance of HttpClient.
   constructor(private http: HttpClient) {}
@@ -30,5 +31,10 @@ export class CandidateService {
   // Adds new candidate to database.
   public addCandidates(candidate): Observable<any> {
     return this.http.post(this.candidatesUrl, candidate);
+  }
+
+  public getApplicationStatus(): Observable<any> {
+    console.log('service here.')
+    return this.http.get(this.candidateStatusUrl);
   }
 }
