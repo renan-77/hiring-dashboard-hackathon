@@ -29,6 +29,24 @@ export class BackendInterceptor implements HttpInterceptor {
         return 'wrong_user';
     }
 
+    countStatus(): any {
+        const status = {'approved': 0, 'denied': 0, 'pending': 0};
+        for (const candidate of candidates) {
+            switch (candidate['status']) {
+                case 'approved':
+                    status.approved++
+                    break;
+                case 'denied':
+                    status.denied++
+                    break;
+                case 'pending':
+                    status.pending++
+                    break;
+            }
+        }
+        return status;
+    }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // GET USERS.
         if (request.method === 'GET' && request.url === 'http://localhost:5000/candidates') {
@@ -54,6 +72,10 @@ export class BackendInterceptor implements HttpInterceptor {
 
             // Returning response based on search.
             return of(new HttpResponse({body: {response: loginCheck}}));
+
+        // Returns the number of approved, denied and pending status on database.
+        } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_status') {
+            return of(new HttpResponse({body: {status: this.countStatus()}}));
         }
 
 

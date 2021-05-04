@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 from faker import Faker
 from random_object_id import generate
 import jwt
@@ -44,15 +44,34 @@ def create_random_candidate():
         'city': address['city'],
         'country': address['country'],
         'postcode': address['postcode'],
-        'video_interview_path': '',
-        'cv_path': '',
+        'status': get_random_status(),
+        'hasInterviewVideo': get_random_boolean(),
+        'hasUpdatedCv': get_random_boolean(),
         'password': f'{first_name.lower()}123'
     }
 
     return candidate
 
 
+def get_random_status():
+    """
+    Function that returns a random status based on a status list
+    :return: Returns random status
+    """
+    status = ['approved', 'denied', 'pending']
+    status_idx = randint(0, len(status) - 1)
+    return status[status_idx]
+
+
+def get_random_boolean():
+    return choice([True, False])
+
+
 def get_random_address():
+    """
+    Getting random address from library Fake
+    :returns: a list of address elements (street, city, country, postcode).
+    """
     fake = Faker()
     return {'street': fake.street_address(), 'city': fake.city(), 'country': fake.country(),
             'postcode': fake.postcode()}
@@ -78,8 +97,8 @@ def generate_jwt_token(key):
 
 def get_random_college():
     """
-    Function that returns a random role based on a role list
-    :return: Returns a random role.
+    Function that returns a random college based on a college list
+    :return: Returns a random college.
     """
     colleges = ['Munster Technological University', 'University College Cork', 'University College Dublin',
              'Trinity College', 'National University of Ireland Galway', 'Galway Mayo Institute of Technology',
