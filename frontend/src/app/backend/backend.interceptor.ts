@@ -16,17 +16,17 @@ export class BackendInterceptor implements HttpInterceptor {
      * @param email: string
      * @param password: string
      */
-    searchDb(email, password): string {
+    searchDb(email, password): boolean {
         for (const user of staff) {
             if (user.email === email) {
                 if (user.password === password) {
-                    return 'success';
+                    return true;
                 } else {
-                    return 'wrong_pass';
+                    return false;
                 }
             }
         }
-        return 'wrong_user';
+        return false;
     }
 
     /**
@@ -109,12 +109,12 @@ export class BackendInterceptor implements HttpInterceptor {
             // Using searchDb function to find if user exists.
             const loginCheck = this.searchDb(request.body.email, request.body.password);
 
-            if (loginCheck === 'success') {
+            if (loginCheck === true) {
                 localStorage.setItem('login', String(true));
             }
 
             // Returning response based on search.
-            return of(new HttpResponse({body: {response: loginCheck}}));
+            return of(new HttpResponse({body: loginCheck}));
 
         // Returns the number of approved, denied and pending status on database.
         } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_status') {

@@ -51,70 +51,71 @@
                                         <tr *ngFor="let candidate of dataSource.filteredData">
                                             <ng-container *ngIf="candidate.hasInterviewVideo == isVideoChecked &&
                                             candidate.hasUpdatedCv == isCvChecked">
-                                            <td>
-                                                {{candidate.first_name}}
-                                            </td>
-                                            <td>
-                                                {{candidate.last_name}}
-                                            </td>
-                                            <td>
-                                                {{candidate.email}}
-                                            </td>
-                                            <td>
-                                                {{candidate.role}}
-                                            </td>
-                                            <td>
-                                                {{candidate.branch}}
-                                            </td>
-                                            <div *ngIf="candidate.hasInterviewVideo">
-                                                <td class="td-actions">
-                                                    <a
-                                                            matTooltip="Video uploaded" [matTooltipPosition]="'above'"
-                                                            class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                        <i class="material-icons">check</i>
-                                                    </a>
+                                                <td>
+                                                    {{candidate.first_name}}
                                                 </td>
-                                            </div>
+                                                <td>
+                                                    {{candidate.last_name}}
+                                                </td>
+                                                <td>
+                                                    {{candidate.email}}
+                                                </td>
+                                                <td>
+                                                    {{candidate.role}}
+                                                </td>
+                                                <td>
+                                                    {{candidate.branch}}
+                                                </td>
+                                                <div *ngIf="candidate.hasInterviewVideo">
+                                                    <td class="td-actions">
+                                                        <a
+                                                                matTooltip="Video uploaded" [matTooltipPosition]="'above'"
+                                                                class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                            <i class="material-icons">check</i>
+                                                        </a>
+                                                    </td>
+                                                </div>
 
-                                            <div *ngIf="!candidate.hasInterviewVideo">
-                                                <td class="td-actions">
-                                                    <a matTooltip="Video not uploaded"
-                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                        <i class="material-icons">close</i>
-                                                    </a>
-                                                </td>
-                                            </div>
+                                                <div *ngIf="!candidate.hasInterviewVideo">
+                                                    <td class="td-actions">
+                                                        <a matTooltip="Video not uploaded"
+                                                           [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                            <i class="material-icons">close</i>
+                                                        </a>
+                                                    </td>
+                                                </div>
 
-                                            <div *ngIf="candidate.hasUpdatedCv">
-                                                <td class="td-actions">
-                                                    <a matTooltip="CV uploaded"
-                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                        <i class="material-icons">check</i>
+                                                <div *ngIf="candidate.hasUpdatedCv">
+                                                    <td class="td-actions">
+                                                        <a matTooltip="CV uploaded"
+                                                           [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                            <i class="material-icons">check</i>
+                                                        </a>
+                                                    </td>
+                                                </div>
+                                                <div *ngIf="!candidate.hasUpdatedCv">
+                                                    <td class="td-actions">
+                                                        <a matTooltip="CV not uploaded"
+                                                           [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                            <i class="material-icons">close</i>
+                                                        </a>
+                                                    </td>
+                                                </div>
+                                                <td>
+                                                    <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
+                                                       matTooltip="Video uploaded" [matTooltipPosition]="'above'"
+                                                       class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">preview</i>
                                                     </a>
                                                 </td>
-                                            </div>
-                                            <div *ngIf="!candidate.hasUpdatedCv">
-                                                <td class="td-actions">
-                                                    <a matTooltip="CV not uploaded"
-                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                        <i class="material-icons">close</i>
+                                                <td>
+                                                    <a mat-raised-button type="button"
+                                                       href="http://localhost:4200/#/candidate-details/{{candidate._id}}"
+                                                       matTooltip="View Profile" [matTooltipPosition]="'above'"
+                                                       class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">portrait</i>
                                                     </a>
                                                 </td>
-                                            </div>
-                                            <td>
-                                                <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
-                                                   matTooltip="Video uploaded" [matTooltipPosition]="'above'"
-                                                   class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                    <i class="material-icons">preview</i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
-                                                   matTooltip="View Profile" [matTooltipPosition]="'above'"
-                                                   class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                    <i class="material-icons">portrait</i>
-                                                </a>
-                                            </td>
                                             </ng-container>
                                         </tr>
                                         </tbody>
@@ -126,3 +127,5 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
