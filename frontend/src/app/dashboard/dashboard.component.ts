@@ -100,7 +100,10 @@ export class DashboardComponent implements OnInit {
         });
 
         /**
-         * Getting status of CV's uploads.
+         * Getting status of CV'slogin.component.css
+         login.component.html
+         login.component.spec.ts
+         login.component.ts uploads.
          */
         this.candidateService.getCvStatus().subscribe(response => {
             this.cvUploads = response;

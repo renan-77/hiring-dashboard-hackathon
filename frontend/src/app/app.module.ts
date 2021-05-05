@@ -24,6 +24,7 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {BackendInterceptor} from './backend/backend.interceptor';
 import {CandidateService} from './data_services/candidate.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import {CandidateService} from './data_services/candidate.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    LoginComponent,
 
   ],
   providers: [

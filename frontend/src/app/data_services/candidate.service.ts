@@ -26,6 +26,11 @@ export class CandidateService {
     return this.getLogin() === 'true';
   }
 
+  // Checks for user on database for logging in.
+  public checkUser(user): Observable<any> {
+    return this.http.post(this.loginUrl, user);
+  }
+
   // Getting all candidates on database.
   public getCandidates(): Observable<any> {
     return this.http.get(this.candidatesUrl);
