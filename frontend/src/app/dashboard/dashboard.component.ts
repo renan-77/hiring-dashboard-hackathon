@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
     totalNumberOfCandidates;
 
     candidatesStatus;
+    handledPercentage;
 
     cvUploads;
     videoUploads
@@ -97,8 +98,15 @@ export class DashboardComponent implements OnInit {
            this.videoUploads = response;
         });
 
+        this.candidateService.getCvStatus().subscribe(response => {
+            this.cvUploads = response;
+        });
+
         console.log('videos');
         console.log(this.videoUploads);
+
+        this.handledPercentage = (((this.candidatesStatus['approved'] +
+            this.candidatesStatus['denied']) / this.totalNumberOfCandidates) * 100).toFixed(2)
 
 
         /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
