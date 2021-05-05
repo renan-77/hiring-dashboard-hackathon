@@ -10,8 +10,8 @@ export class CandidateService {
   private readonly candidatesUrl: string = 'http://localhost:5000/candidates';
   private readonly candidateStatusUrl: string = 'http://localhost:5000/cadidate_status';
   private readonly singleCandidateUrl: string = 'http://localhost:5000/candidate';
-  private readonly candidateVideoUrl: string = 'http://localhost:5000/candidates_video';
-  private readonly candidateCvUrl: string = 'http://localhost:5000/candidates_cv';
+  private readonly candidateVideoUrl: string = 'http://localhost:5000/candidate_video';
+  private readonly candidateCvUrl: string = 'http://localhost:5000/candidate_cv';
 
   // Declaring instance of HttpClient.
   constructor(private http: HttpClient) {}

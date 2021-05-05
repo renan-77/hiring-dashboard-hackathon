@@ -89,22 +89,26 @@ export class DashboardComponent implements OnInit {
          * Getting status of application for pie chart.
          */
         this.candidateService.getApplicationStatus().subscribe(response => {
-            console.log('in dashboard');
             this.candidatesStatus = response;
-            console.log(response);
         });
 
+        /**
+         * Getting status of video uploads.
+         */
         this.candidateService.getVideoStatus().subscribe(response => {
            this.videoUploads = response;
         });
 
+        /**
+         * Getting status of CV's uploads.
+         */
         this.candidateService.getCvStatus().subscribe(response => {
             this.cvUploads = response;
         });
 
-        console.log('videos');
-        console.log(this.videoUploads);
-
+        /**
+         * Math Expression to get percentage of handled applications.
+         */
         this.handledPercentage = (((this.candidatesStatus['approved'] +
             this.candidatesStatus['denied']) / this.totalNumberOfCandidates) * 100).toFixed(2)
 

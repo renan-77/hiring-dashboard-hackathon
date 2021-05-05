@@ -63,14 +63,12 @@ export class BackendInterceptor implements HttpInterceptor {
     countVideoStatus(): any {
         const videoStatus = {'uploaded': 0, 'not_uploaded': 0};
         for (const candidate of candidates) {
-            switch (candidate['hasInterviewVideo']) {
-                case true:
-                    videoStatus.uploaded++
-                    break;
-                case false:
-                    videoStatus.not_uploaded++
-                    break;
+            if (candidate.hasInterviewVideo) {
+                videoStatus.uploaded++;
+            } else {
+                videoStatus.not_uploaded++;
             }
+
         }
         return videoStatus;
     }
@@ -78,13 +76,10 @@ export class BackendInterceptor implements HttpInterceptor {
     countCvStatus(): any {
         const cvStatus = {'uploaded': 0, 'not_uploaded': 0};
         for (const candidate of candidates) {
-            switch (candidate['hasUpdatedCv']) {
-                case true:
-                    cvStatus.uploaded++
-                    break;
-                case false:
-                    cvStatus.not_uploaded++
-                    break;
+            if (candidate.hasUpdatedCv) {
+                cvStatus.uploaded++;
+            } else {
+                cvStatus.not_uploaded++;
             }
         }
         return cvStatus;
@@ -132,7 +127,7 @@ export class BackendInterceptor implements HttpInterceptor {
             return of(new HttpResponse({body: videoStatus}));
 
         // Returns the number of uploaded and not uploaded CV's
-        } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_cv') {
+        } else if (request.method === 'GET' && request.url === 'http://localhost:5000/candidate_cv') {
             const cvStatus = this.countCvStatus();
             return of(new HttpResponse({body: cvStatus}));
         }
