@@ -33,6 +33,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CandidateDetailsComponent } from './candidate-details/candidate-details.component';
+import { NewCandidateComponent } from './new-candidate/new-candidate.component';
 
 @NgModule({
     imports: [
@@ -59,6 +60,7 @@ import { CandidateDetailsComponent } from './candidate-details/candidate-details
     AdminLayoutComponent,
     LoginComponent,
     CandidateDetailsComponent,
+    NewCandidateComponent,
 
   ],
   providers: [

@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
                 private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
+        localStorage.removeItem('login');
+
         this.loadForm();
     }
 
