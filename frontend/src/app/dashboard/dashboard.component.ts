@@ -14,6 +14,9 @@ export class DashboardComponent implements OnInit {
 
     candidatesStatus;
 
+    cvUploads;
+    videoUploads
+
     constructor(private candidateService: CandidateService) { }
     startAnimationForLineChart(chart) {
         let seq: any, delays: any, durations: any;
@@ -73,19 +76,30 @@ export class DashboardComponent implements OnInit {
     };
 
     ngOnInit() {
+        /**
+         * Assigns candidates object to variable and count candidates.
+         */
         this.candidateService.getCandidates().subscribe(response => {
             this.candidates = response;
         });
         this.totalNumberOfCandidates = this.candidates.length;
 
+        /**
+         * Getting status of application for pie chart.
+         */
         this.candidateService.getApplicationStatus().subscribe(response => {
             console.log('in dashboard');
             this.candidatesStatus = response;
             console.log(response);
         });
 
-        console.log('Candidate Status here: ');
-        console.log(this.candidatesStatus);
+        this.candidateService.getVideoStatus().subscribe(response => {
+           this.videoUploads = response;
+        });
+
+        console.log('videos');
+        console.log(this.videoUploads);
+
 
         /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
@@ -136,8 +150,8 @@ export class DashboardComponent implements OnInit {
         /* ----------==========     Completed Tasks Pie initialization    ==========---------- */
 
         const dataCompletedTasksPie: any = {
-            series: [ {value: this.candidatesStatus['status']['approved']},  {value: this.candidatesStatus['status']['denied']},
-                {value: this.candidatesStatus['status']['pending']}],
+            series: [ {value: this.candidatesStatus['approved']},  {value: this.candidatesStatus['denied']},
+                {value: this.candidatesStatus['pending']}],
         };
         const optionsCompletedTasksPie: any = {
             total: this.totalNumberOfCandidates,

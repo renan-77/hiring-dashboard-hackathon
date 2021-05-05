@@ -29,6 +29,19 @@ export class BackendInterceptor implements HttpInterceptor {
         return 'wrong_user';
     }
 
+    /**
+     * Function that returns a candidate object based on ID.
+     * @param - id
+     * @returns - candidate object.
+     */
+    findSingleCandidate(id): object {
+        for (const candidate of candidates) {
+            if (candidate._id === id) {
+                return candidate;
+            }
+        }
+    }
+
     countStatus(): any {
         const status = {'approved': 0, 'denied': 0, 'pending': 0};
         for (const candidate of candidates) {
@@ -47,10 +60,45 @@ export class BackendInterceptor implements HttpInterceptor {
         return status;
     }
 
+    countVideoStatus(): any {
+        const videoStatus = {'uploaded': 0, 'not_uploaded': 0};
+        for (const candidate of candidates) {
+            switch (candidate['hasInterviewVideo']) {
+                case true:
+                    videoStatus.uploaded++
+                    break;
+                case false:
+                    videoStatus.not_uploaded++
+                    break;
+            }
+        }
+        return videoStatus;
+    }
+
+    countCvStatus(): any {
+        const cvStatus = {'uploaded': 0, 'not_uploaded': 0};
+        for (const candidate of candidates) {
+            switch (candidate['hasUpdatedCv']) {
+                case true:
+                    cvStatus.uploaded++
+                    break;
+                case false:
+                    cvStatus.not_uploaded++
+                    break;
+            }
+        }
+        return cvStatus;
+    }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // GET USERS.
         if (request.method === 'GET' && request.url === 'http://localhost:5000/candidates') {
             return of(new HttpResponse({status: 200, body: candidates}));
+
+        // Fetching a single candidate.
+        } else if (request.method === 'POST' && request.url === 'http://localhost:5000/candidate') {
+            const candidate = this.findSingleCandidate(request.body.id);
+            return of(new HttpResponse({body: candidate}));
 
         // REGISTER USER.
         } else if (request.method === 'POST' && request.url === 'http://localhost:5000/candidates') {
@@ -76,9 +124,17 @@ export class BackendInterceptor implements HttpInterceptor {
         // Returns the number of approved, denied and pending status on database.
         } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_status') {
             const status = this.countStatus();
-            console.log('In API here');
-            console.log(status);
-            return of(new HttpResponse({body: {status: status}}));
+            return of(new HttpResponse({body: status}));
+
+        // Returns the number of uploaded and not uploaded videos
+        } else if (request.method === 'GET' && request.url === 'http://localhost:5000/candidate_video') {
+            const videoStatus = this.countVideoStatus();
+            return of(new HttpResponse({body: videoStatus}));
+
+        // Returns the number of uploaded and not uploaded CV's
+        } else if (request.method === 'GET' && request.url === 'http://localhost:5000/cadidate_cv') {
+            const cvStatus = this.countCvStatus();
+            return of(new HttpResponse({body: cvStatus}));
         }
 
 

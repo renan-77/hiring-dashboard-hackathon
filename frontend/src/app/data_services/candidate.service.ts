@@ -9,6 +9,9 @@ export class CandidateService {
   private readonly loginUrl: string = 'http://localhost:5000/login';
   private readonly candidatesUrl: string = 'http://localhost:5000/candidates';
   private readonly candidateStatusUrl: string = 'http://localhost:5000/cadidate_status';
+  private readonly singleCandidateUrl: string = 'http://localhost:5000/candidate';
+  private readonly candidateVideoUrl: string = 'http://localhost:5000/candidates_video';
+  private readonly candidateCvUrl: string = 'http://localhost:5000/candidates_cv';
 
   // Declaring instance of HttpClient.
   constructor(private http: HttpClient) {}
@@ -28,13 +31,24 @@ export class CandidateService {
     return this.http.get(this.candidatesUrl);
   }
 
+  public getSingleCandidate(id): Observable<any> {
+    return this.http.post(this.singleCandidateUrl, id);
+  }
+
   // Adds new candidate to database.
   public addCandidates(candidate): Observable<any> {
     return this.http.post(this.candidatesUrl, candidate);
   }
 
   public getApplicationStatus(): Observable<any> {
-    console.log('service here.')
     return this.http.get(this.candidateStatusUrl);
+  }
+
+  public getVideoStatus(): Observable<any> {
+    return this.http.get(this.candidateVideoUrl);
+  }
+
+  public getCvStatus(): Observable<any> {
+    return this.http.get(this.candidateCvUrl);
   }
 }
