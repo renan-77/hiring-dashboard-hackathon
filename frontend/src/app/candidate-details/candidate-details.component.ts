@@ -8,14 +8,19 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./candidate-details.component.css']
 })
 export class CandidateDetailsComponent implements OnInit {
-  currentUser;
+  id;
+  user;
 
   constructor(private route: ActivatedRoute, private candidateService: CandidateService) { }
 
   ngOnInit(): void {
-    // this.candidateService.getSingleCandidate(this.route.snapshot.paramMap.get('id')).subscribe(response => {
-    //   console.log(response);
-    // })
+    // Getting ID from URL
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    // Fetching user using ID
+    this.candidateService.getSingleCandidate({id: this.id}).subscribe(response => {
+      this.user = response;
+    });
   }
 
 }
