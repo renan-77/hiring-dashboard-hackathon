@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {candidates} from '../backend/candidates';
+// import {candidates} from '../backend/candidates';
 import {CandidateService} from '../data_services/candidate.service';
 import {MatTableDataSource} from '@angular/material/table';
 
@@ -12,7 +12,8 @@ export class TableListComponent implements OnInit {
   candidates;
   totalNumberOfCandidates;
   dataSource;
-;
+  isCvChecked: boolean;
+  isVideoChecked: boolean;
   constructor(private candidateService: CandidateService) { }
 
   ngOnInit() {
@@ -20,6 +21,8 @@ export class TableListComponent implements OnInit {
       this.candidates = response;
       this.dataSource = new MatTableDataSource(response);
     });
+    this.isCvChecked = false;
+    this.isVideoChecked = false;
     console.log(this.dataSource);
     this.totalNumberOfCandidates = this.candidates.length;
   }
