@@ -21,6 +21,8 @@ export class CandidateDetailsComponent implements OnInit {
     this.candidateService.getSingleCandidate({id: this.id}).subscribe(response => {
       this.user = response;
     });
+
+    console.log(this.user);
   }
 
 }
