@@ -10,196 +10,119 @@
                     <mat-form-field>
                         <input (keyup)="applyFilter($event.target['value'])" matInput placeholder="Filter">
                     </mat-form-field>
-                    <input type="checkbox" ngModel="Name.active"> CV uploaded
-                    <input type="checkbox"> Video uploaded
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover" >
-                                <thead class="" >
-                                <th>
-                                    First Name
-                                </th>
-                                <th>
-                                    Last Name
-                                </th>
-                                <th>
-                                    Email
-                                </th>
-                                <th>
-                                    Role
-                                </th>
-                                <th>
-                                    Branch
-                                </th>
-                                <th>
-                                    Files Uploaded
-                                </th>
-                                <th>
-                                    Preview Files
-                                </th>
-                                <th>
-                                    User Details
-                                </th>
+                        <input type="checkbox" value="false" [(ngModel)]="isCvChecked"> CV
+                        uploaded
+                        <input type="checkbox" value="false" [(ngModel)]="isVideoChecked">
+                        Video
+                        uploaded
+                        <div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" >
+                                        <thead class="" >
+                                        <th>
+                                            First Name
+                                        </th>
+                                        <th>
+                                            Last Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Role
+                                        </th>
+                                        <th>
+                                            Branch
+                                        </th>
+                                        <th>
+                                            Files Uploaded
+                                        </th>
+                                        <th>
+                                            Preview Files
+                                        </th>
+                                        <th>
+                                            User Details
+                                        </th>
 
-                                </thead>
-                                <tbody>
-                                <tr *ngFor="let candidate of dataSource.filteredData">
-                                    <td>
-                                        {{candidate.first_name}}
-                                    </td>
-                                    <td>
-                                        {{candidate.last_name}}
-                                    </td>
-                                    <td>
-                                        {{candidate.email}}
-                                    </td>
-                                    <td>
-                                        {{candidate.role}}
-                                    </td>
-                                    <td>
-                                        {{candidate.branch}}
-                                    </td>
-                                    <div *ngIf="candidate.hasInterviewVideo">
-                                        <td class="td-actions">
-                                            <a
-                                               matTooltip="Video uploaded" [matTooltipPosition]="'above'"
-                                               class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                <i class="material-icons">check</i>
-                                            </a>
-                                        </td>
-                                    </div>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let candidate of dataSource.filteredData">
+                                            <ng-container *ngIf="candidate.hasInterviewVideo == isVideoChecked &&
+                                            candidate.hasUpdatedCv == isCvChecked">
+                                            <td>
+                                                {{candidate.first_name}}
+                                            </td>
+                                            <td>
+                                                {{candidate.last_name}}
+                                            </td>
+                                            <td>
+                                                {{candidate.email}}
+                                            </td>
+                                            <td>
+                                                {{candidate.role}}
+                                            </td>
+                                            <td>
+                                                {{candidate.branch}}
+                                            </td>
+                                            <div *ngIf="candidate.hasInterviewVideo">
+                                                <td class="td-actions">
+                                                    <a
+                                                            matTooltip="Video uploaded" [matTooltipPosition]="'above'"
+                                                            class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">check</i>
+                                                    </a>
+                                                </td>
+                                            </div>
 
-                                    <div *ngIf="!candidate.hasInterviewVideo">
-                                        <td class="td-actions">
-                                            <a matTooltip="Video not uploaded"
-                                               [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                <i class="material-icons">close</i>
-                                            </a>
-                                        </td>
-                                    </div>
+                                            <div *ngIf="!candidate.hasInterviewVideo">
+                                                <td class="td-actions">
+                                                    <a matTooltip="Video not uploaded"
+                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">close</i>
+                                                    </a>
+                                                </td>
+                                            </div>
 
-                                    <div *ngIf="candidate.hasUpdatedCv">
-                                        <td class="td-actions">
-                                            <a matTooltip="CV uploaded"
-                                               [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                <i class="material-icons">check</i>
-                                            </a>
-                                        </td>
-                                    </div>
-                                    <div *ngIf="!candidate.hasUpdatedCv">
-                                        <td class="td-actions">
-                                            <a matTooltip="CV not uploaded"
-                                               [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                                <i class="material-icons">close</i>
-                                            </a>
-                                        </td>
-                                    </div>
-                                    <td>
-                                        <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
-                                           matTooltip="Video uploaded" [matTooltipPosition]="'above'"
-                                           class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                            <i class="material-icons">preview</i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
-                                           matTooltip="View Profile" [matTooltipPosition]="'above'"
-                                           class="btn btn-primary btn-link btn-sm btn-just-icon" >
-                                            <i class="material-icons">portrait</i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <!--                                  <tr>-->
-                                <!--                                      <td>-->
-                                <!--                                          2-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Minerva Hooper-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Curaçao-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Sinaai-Waas-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          $23,789-->
-                                <!--                                      </td>-->
-                                <!--                                  </tr>-->
-                                <!--                                  <tr>-->
-                                <!--                                      <td>-->
-                                <!--                                          3-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Sage Rodriguez-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Netherlands-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Baileux-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          $56,142-->
-                                <!--                                      </td>-->
-                                <!--                                  </tr>-->
-                                <!--                                  <tr>-->
-                                <!--                                      <td>-->
-                                <!--                                          4-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Philip Chaney-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Korea, South-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Overland Park-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          $38,735-->
-                                <!--                                      </td>-->
-                                <!--                                  </tr>-->
-                                <!--                                  <tr>-->
-                                <!--                                      <td>-->
-                                <!--                                          5-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Doris Greene-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Malawi-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Feldkirchen in Kärnten-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          $63,542-->
-                                <!--                                      </td>-->
-                                <!--                                  </tr>-->
-                                <!--                                  <tr>-->
-                                <!--                                      <td>-->
-                                <!--                                          6-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Mason Porter-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Chile-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          Gloucester-->
-                                <!--                                      </td>-->
-                                <!--                                      <td>-->
-                                <!--                                          $78,615-->
-                                <!--                                      </td>-->
-                                <!--                                  </tr>-->
-                                </tbody>
-                            </table>
+                                            <div *ngIf="candidate.hasUpdatedCv">
+                                                <td class="td-actions">
+                                                    <a matTooltip="CV uploaded"
+                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">check</i>
+                                                    </a>
+                                                </td>
+                                            </div>
+                                            <div *ngIf="!candidate.hasUpdatedCv">
+                                                <td class="td-actions">
+                                                    <a matTooltip="CV not uploaded"
+                                                       [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                        <i class="material-icons">close</i>
+                                                    </a>
+                                                </td>
+                                            </div>
+                                            <td>
+                                                <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
+                                                   matTooltip="Video uploaded" [matTooltipPosition]="'above'"
+                                                   class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                    <i class="material-icons">preview</i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
+                                                   matTooltip="View Profile" [matTooltipPosition]="'above'"
+                                                   class="btn btn-primary btn-link btn-sm btn-just-icon" >
+                                                    <i class="material-icons">portrait</i>
+                                                </a>
+                                            </td>
+                                            </ng-container>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
