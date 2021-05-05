@@ -32,18 +32,14 @@ export class LoginComponent implements OnInit {
      * @param user: object - A JSON from form.
      */
     onLoginSubmit(user): void {
-        let login;
         this.candidateService.checkUser(user).subscribe( response => {
-            // Assigning login boolean to a variable.
-            login = response.login;
-
             // Checking if login is successful.
-            if (login === true) {
+            if (response === true) {
                 // Setting received token to local storage.
                 localStorage.setItem('login', 'true');
-                // this.router.navigate(['/home']);
+                this.router.navigate(['/dashboard']);
             } else {
-                this.snackBar.open(response.message, 'Close', {
+                this.snackBar.open('User/password is wrong.', 'Close', {
                     duration: 2000,
                 });
             }
