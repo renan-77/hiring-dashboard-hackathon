@@ -12,24 +12,23 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   }, {
-    path: 'dashboard',
+    path: '',
     component: AdminLayoutComponent,
     children: [{
       path: '',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
     }]
-  }, {
+    }, {
     path: 'login',
     component: LoginComponent
   }
-
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
+    RouterModule.forRoot(routes, {
        useHash: true
     })
   ],
