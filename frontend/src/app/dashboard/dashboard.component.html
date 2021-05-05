@@ -2,9 +2,10 @@
     <div class="container-fluid">
         <div class="card card-plain">
             <div class="card-header card-header-info">
-                <h4 class="card-title">  Users Application</h4>
-                <p class="card-category">This file was uploaded 2 hours ago!
+                <h4 class="card-title">  Hello Dylan!</h4>
+                <p><bold>Congrats!</bold> We here at Dell really liked your CV and we're happy to welcome you to the next step. Here you will submit a 5 minute long video where you will tell us about yourself, your skills and you can try in any way possible to impress us!
                 </p>
+                <p>Below is a detailed video from our TA Team about the role you will be interviewing for:</p>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -25,15 +26,28 @@
                 <div class="col-md-12">
                     <div class="card-body">
                         <div class="embed-responsive">
-                            <h2 href="assets/SampleApp.jpeg"> Click
+                            <h4 href="assets/SampleApp.jpeg"> Click
                                 <a href="assets/job_spec.docx" target="_blank">
                                     here
                                 </a>
-                                to view candidates' CV!
-                            </h2>
+                                to view pdf of job-spec!
+                            </h4>
                         </div>
                     </div>
                 </div>
+            </div>
+            <br>
+            <div class="card-header card-header-info">
+                <h4 class="card-title">  Video Submission.</h4>
+                <p> As mentioned above, we here at Dell are always looking to innovate and not follow the norm. Thus, our knew system puts the candidate in the driving seat.
+                </p>
+                <p>The video must be no more than five minutes. Please state your name, email address and field of study at the beginning. The rest of the time can be filled however which way you desire. We encourage you to be as creative and unique as possible.</p>
+                <p>Please submit your video video below: </p>
+                <form action="https://upload.embed.ly/1/video?key=YOUR_API_KEY" method="POST" enctype="multipart/form-data">
+                    <input id="video_file" name="video_file" type="file">
+                    <input type="submit" class="button" value="Upload">
+                </form>
+                <div class="video-display"></div>
             </div>
         </div>
     </div>
