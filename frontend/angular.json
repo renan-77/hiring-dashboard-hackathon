@@ -18,7 +18,7 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/assets/img/dell_logo.svg"
             ],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
@@ -102,7 +102,7 @@
             ],
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/assets/img/dell_logo.svg"
             ]
           }
         },
