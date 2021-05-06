@@ -102,11 +102,13 @@
                                                     </td>
                                                 </div>
                                                 <td>
+                                                    <ng-container *ngIf="candidate.hasInterviewVideo">
                                                     <a mat-raised-button type="button" href="http://localhost:4200/#/icons"
                                                        matTooltip="Video uploaded" [matTooltipPosition]="'above'"
                                                        class="btn btn-primary btn-link btn-sm btn-just-icon" >
                                                         <i class="material-icons">preview</i>
                                                     </a>
+                                                    </ng-container>
                                                 </td>
                                                 <td>
                                                     <a mat-raised-button type="button"
