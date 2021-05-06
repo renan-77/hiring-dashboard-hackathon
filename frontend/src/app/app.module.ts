@@ -27,6 +27,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { BeComponent } from './be/be.component';
 import { BenefitsComponent } from './benefits/benefits.component';
 import { AboutDellComponent } from './about-dell/about-dell.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { AboutDellComponent } from './about-dell/about-dell.component';
     BeComponent,
     BenefitsComponent,
     AboutDellComponent,
+    UserInfoComponent,
 
   ],
   providers: [],
